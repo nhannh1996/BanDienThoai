@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="18dp"
+    android:orientation="vertical"
+    tools:context="com.example.nhan.bandienthoai.SuaSanPham">
+    <ImageButton
+        android:id="@+id/imageButton_AnhSanPham"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:srcCompat="@mipmap/ic_launcher"
+        android:layout_gravity="center"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <AutoCompleteTextView
+            android:id="@+id/editText_TenSanPham"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tên sản phẩm"
+            android:inputType="none"
+            android:maxLines="1"
+            android:singleLine="true" />
+
+    </android.support.design.widget.TextInputLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hãng Sản xuất"
+        android:textSize="18dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginTop="5dp"/>
+    <Spinner
+        android:id="@+id/spinner_HangSP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Loại sản phẩm"
+        android:textSize="18dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginTop="5dp"/>
+    <Spinner
+        android:id="@+id/spinner_Loai"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/editText_SoTien"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Số tiền"
+            android:imeActionId="@+id/login"
+
+            android:imeOptions="actionUnspecified"
+            android:inputType="numberDecimal"
+            android:maxLines="1"
+            android:singleLine="true" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <AutoCompleteTextView
+            android:id="@+id/editText_MieuTa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Miêu tả"
+            android:inputType="none"
+            android:maxLines="1"
+            android:imeActionLabel="Sửa SP"
+            android:singleLine="true" />
+
+    </android.support.design.widget.TextInputLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
+        <Button
+            android:id="@+id/button_SuaSanPham"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sửa"
+            android:textStyle="bold"
+            android:layout_weight="1"/>
+        <Button
+            android:id="@+id/button_XoaSanPham"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Xóa"
+            android:textStyle="bold"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+
+</LinearLayout>

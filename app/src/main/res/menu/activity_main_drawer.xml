@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/nav_mobile" android:icon="@drawable/ic_settings_cell_black_24dp"
+            android:title="Điện thoại" />
+        <item android:id="@+id/nav_laptop" android:icon="@drawable/ic_laptop_mac_black_24dp"
+            android:title="LapTop" />
+        <item android:id="@+id/nav_computer" android:icon="@drawable/ic_laptop_windows_black_24dp"
+            android:title="Máy tính bàn" />
+        <item android:id="@+id/nav_manage" android:icon="@drawable/ic_menu_manage"
+            android:title="Phụ Kiện" />
+    </group>
+
+    <item android:title="Liên hệ">
+        <menu>
+            <item android:id="@+id/nav_share" android:icon="@drawable/ic_menu_share"
+                android:title="Chia sẽ" />
+            <item android:id="@+id/nav_call" android:icon="@drawable/ic_call_black_24dp"
+                android:title="Gọi điện" />
+        </menu>
+    </item>
+
+</menu>

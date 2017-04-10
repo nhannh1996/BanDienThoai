@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Chợ Điện Thoại</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string-array name="listLoai">
+        <item>DienThoai</item>
+        <item>LapTop</item>
+        <item>MayTinhBan</item>
+        <item>PhuKien</item>
+    </string-array>
+    <string-array name="listHang">
+        <item>Apple</item>
+        <item>SamSung</item>
+        <item>Nokia</item>
+        <item>Oppo</item>
+    </string-array>
+</resources>

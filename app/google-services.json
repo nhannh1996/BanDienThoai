@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "268629522655",
+    "firebase_url": "https://bandienthoai-7780d.firebaseio.com",
+    "project_id": "bandienthoai-7780d",
+    "storage_bucket": "bandienthoai-7780d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:268629522655:android:1e77407d5090b426",
+        "android_client_info": {
+          "package_name": "com.example.nhan.bandienthoai"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "268629522655-046te3261i6sf7u8lf9hc14av0mh59c9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.nhan.bandienthoai",
+            "certificate_hash": "99f5b4c22c04afe3c8c01735263423dfc46c10a8"
+          }
+        },
+        {
+          "client_id": "268629522655-6tnpde14qaju5e7qmuqg747tlsvcbqg5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1l9UD85qlS4NjLnhuPtIXoJMJmhzSksg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "268629522655-6tnpde14qaju5e7qmuqg747tlsvcbqg5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
