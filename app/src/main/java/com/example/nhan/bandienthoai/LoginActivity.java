@@ -1,5 +1,6 @@
 package com.example.nhan.bandienthoai;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -23,6 +24,8 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private Button btn_DangNhap,btn_DangKy;
     private EditText edt_TaiKhoan,edt_MatKhau;
+    private TextView tv_QuenMatKhau;
+    private ProgressDialog mProgress;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +54,12 @@ public class LoginActivity extends AppCompatActivity {
                 setBtn_DangKy();
             }
         });
+        tv_QuenMatKhau.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setTv_QuenMatKhau();
+            }
+        });
         //tự động login
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -66,7 +75,6 @@ public class LoginActivity extends AppCompatActivity {
                         finish();
                     }else{
                         Toast.makeText(LoginActivity.this,"USER " + user.getEmail(), Toast.LENGTH_SHORT).show();
-                       // Toast.makeText(LoginActivity.this,"Đăng nhập thành công " + user.getEmail(), Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                         startActivity(intent);
                         finish();
@@ -81,14 +89,30 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void setBtn_DangNhap(){
+        mProgress.setTitle("Đang trong quá trình đăng nhập ...");
+        mProgress.setCancelable(false);
+        mProgress.setMessage("Vui lòng chờ trong giây lát!");
         String taikhoan = edt_TaiKhoan.getText().toString();
         String matkhau = edt_MatKhau.getText().toString();
+        if(taikhoan.length() == 0 ){
+            Toast.makeText(this, "Vui lòng nhập tài khoản !", Toast.LENGTH_SHORT).show();
+            edt_TaiKhoan.requestFocus();
+            return;
+        }else if(matkhau.length() == 0){
+            Toast.makeText(this, "Vui lòng nhập mật khẩu !", Toast.LENGTH_SHORT).show();
+            edt_MatKhau.requestFocus();
+            return;
+        }
+        mProgress.show();
         //kết nối tài khoản từ firebase
         mAuth.signInWithEmailAndPassword(taikhoan,matkhau).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (!task.isSuccessful()) {
                     Toast.makeText(LoginActivity.this,"Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
+                    mProgress.dismiss();
+                }else{
+                     mProgress.dismiss();
                 }
             }
         });
@@ -96,18 +120,57 @@ public class LoginActivity extends AppCompatActivity {
     public void setBtn_DangKy(){
         String taikhoan = edt_TaiKhoan.getText().toString();
         String matkhau = edt_MatKhau.getText().toString();
+        if(taikhoan.length() == 0 ){
+            Toast.makeText(this, "Vui lòng nhập tài khoản !", Toast.LENGTH_SHORT).show();
+            edt_TaiKhoan.requestFocus();
+            return;
+        }else if(matkhau.length() == 0){
+            Toast.makeText(this, "Vui lòng nhập mật khẩu !", Toast.LENGTH_SHORT).show();
+            edt_MatKhau.requestFocus();
+            return;
+        }
+        mProgress.setTitle("Đang trong quá trình đăng ký ...");
+        mProgress.setCancelable(false);
+        mProgress.setMessage("Vui lòng chờ trong giây lát!");
+        mProgress.show();
         mAuth.createUserWithEmailAndPassword(taikhoan,matkhau).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (!task.isSuccessful()) {
                     Toast.makeText(LoginActivity.this,"Đăng ký thất bại", Toast.LENGTH_SHORT).show();
+                    mProgress.dismiss();
                 }else{
                     Toast.makeText(LoginActivity.this,"Đăng ký thành công", Toast.LENGTH_SHORT).show();
+                    mProgress.dismiss();
                 }
             }
         });
     }
+    public void setTv_QuenMatKhau(){
 
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        String emailAddress = edt_TaiKhoan.getText().toString();
+        if(emailAddress.length() == 0) {
+            Toast.makeText(this, "Hãy nhập Email ở phía trên!", Toast.LENGTH_SHORT).show();
+        }else {
+            mProgress.setTitle("Đang trong quá kiểm tra Email ...");
+            mProgress.setCancelable(false);
+            mProgress.setMessage("Vui lòng chờ trong giây lát!");
+            mProgress.show();
+            auth.sendPasswordResetEmail(emailAddress).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(LoginActivity.this, "Hãy đăng nhập vào mail và thiết lập lại mật khẩu", Toast.LENGTH_LONG).show();
+                        mProgress.dismiss();
+                    } else {
+                        Toast.makeText(LoginActivity.this, "Không tồn tại Email trong hệ thống", Toast.LENGTH_LONG).show();
+                        mProgress.dismiss();
+                    }
+                }
+            });
+        }
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -118,13 +181,16 @@ public class LoginActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     public void anhxa(){
-        setTitle("Đăng nhập");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setTitle("FPT POLYTECHNIC - NHAN");
         mAuth = FirebaseAuth.getInstance();
         btn_DangNhap = (Button) findViewById(R.id.button_DangNhap);
         btn_DangKy = (Button) findViewById(R.id.button_DangKy);
         edt_TaiKhoan = (EditText) findViewById(R.id.editText_TaiKhoan);
         edt_MatKhau = (EditText) findViewById(R.id.editText_MatKhau);
+        tv_QuenMatKhau = (TextView) findViewById(R.id.textView_QuenMatKhau);
+        mProgress = new ProgressDialog(this);
+
+
     }
     @Override
     public void onStart() {

@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.example.nhan.bandienthoai.AdminManager">
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:padding="16dp"
-    android:orientation="vertical"
-    tools:context="com.example.nhan.bandienthoai.AdminManager">
-
+    android:orientation="vertical">
 
     <ImageButton
         android:id="@+id/imageButton_AnhSanPham"
@@ -90,13 +92,27 @@
             android:singleLine="true" />
 
     </android.support.design.widget.TextInputLayout>
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Đánh giá"
+        android:textSize="18dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginTop="5dp"/>
+    <Spinner
+        android:id="@+id/spinner_DanhGia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"/>
     <Button
         android:id="@+id/button_ThemSanPham"
         style="?android:textAppearanceSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="Thêm"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="#fff"
+        android:theme="@style/AppTheme.Button"
+        android:layout_marginTop="20dp"/>
 </LinearLayout>
+</ScrollView>

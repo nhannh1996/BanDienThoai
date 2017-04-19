@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="18dp"
-    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
     tools:context="com.example.nhan.bandienthoai.SuaSanPham">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:orientation="vertical">
     <ImageButton
         android:id="@+id/imageButton_AnhSanPham"
         android:layout_width="150dp"
@@ -87,10 +90,22 @@
             android:singleLine="true" />
 
     </android.support.design.widget.TextInputLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Đánh giá"
+        android:textSize="18dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginTop="5dp"/>
+    <Spinner
+        android:id="@+id/spinner_DanhGia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp">
+        android:layout_marginTop="20dp">
         <Button
             android:id="@+id/button_SuaSanPham"
             style="?android:textAppearanceSmall"
@@ -98,7 +113,8 @@
             android:layout_height="wrap_content"
             android:text="Sửa"
             android:textStyle="bold"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:theme="@style/AppTheme.Button"/>
         <Button
             android:id="@+id/button_XoaSanPham"
             style="?android:textAppearanceSmall"
@@ -106,8 +122,10 @@
             android:layout_height="wrap_content"
             android:text="Xóa"
             android:textStyle="bold"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:theme="@style/AppTheme.Button"
+            />
     </LinearLayout>
 
-
 </LinearLayout>
+</ScrollView>

@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/action_DangXuat"
+    <item android:id="@+id/action_XoaDuLieu"
         android:orderInCategory="100"
-        android:title="Đăng xuất"
+        android:title="Xóa dữ liệu"
          />
-    <item android:id="@+id/action_SanPham"
-        android:orderInCategory="100"
-        android:title="Sản phẩm"
-        />
 
 </menu>

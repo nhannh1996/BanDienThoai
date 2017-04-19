@@ -32,6 +32,7 @@ public class adapterSP_Iphone extends BaseAdapter {
     class View_Cell{
         ImageView imgAnhSP;
         TextView tvTen,tvSoTien,tvMieuTa;
+        ImageView imgDanhGia1,imgDanhGia2,imgDanhGia3,imgDanhGia4,imgDanhGia5;
     };
     @Override
     public int getCount() {
@@ -58,7 +59,12 @@ public class adapterSP_Iphone extends BaseAdapter {
             cell.imgAnhSP = (ImageView) view.findViewById(R.id.imageView_AnhSanPham);
             cell.tvTen = (TextView) view.findViewById(R.id.textView_TenSanPham);
             cell.tvSoTien = (TextView) view.findViewById(R.id.textView_GiaTienSP);
-            cell.tvMieuTa = (TextView) view.findViewById(R.id.textView_MieuTa);
+           // cell.tvMieuTa = (TextView) view.findViewById(R.id.textView_MieuTa);
+            cell.imgDanhGia1 = (ImageView) view.findViewById(R.id.imageView_Star1);
+            cell.imgDanhGia2 = (ImageView) view.findViewById(R.id.imageView_Star2);
+            cell.imgDanhGia3 = (ImageView) view.findViewById(R.id.imageView_Star3);
+            cell.imgDanhGia4 = (ImageView) view.findViewById(R.id.imageView_Star4);
+            cell.imgDanhGia5 = (ImageView) view.findViewById(R.id.imageView_Star5);
             view.setTag(cell);
         }else{
             cell = (View_Cell) view.getTag();
@@ -68,8 +74,40 @@ public class adapterSP_Iphone extends BaseAdapter {
         Bitmap bmp = BitmapFactory.decodeByteArray(mangHinh,0,mangHinh.length);
         cell.imgAnhSP.setImageBitmap(bmp);
         cell.tvTen.setText(list.get(i).getTenSP().toString());
-        cell.tvSoTien.setText(list.get(i).getSotienSP().toString());
-        cell.tvMieuTa.setText(list.get(i).getMieutaSP().toString());
+        cell.tvSoTien.setText(list.get(i).getSotienSP().toString() + " VND");
+      //  cell.tvMieuTa.setText(list.get(i).getMieutaSP().toString());
+        String danhgia = list.get(i).getDanhgia().toString();
+        if(danhgia.equals("1")){
+            cell.imgDanhGia1.setImageResource(R.drawable.star1);
+            cell.imgDanhGia2.setImageResource(R.drawable.star0);
+            cell.imgDanhGia3.setImageResource(R.drawable.star0);
+            cell.imgDanhGia4.setImageResource(R.drawable.star0);
+            cell.imgDanhGia5.setImageResource(R.drawable.star0);
+        }else if(danhgia.equals("2")){
+            cell.imgDanhGia1.setImageResource(R.drawable.star1);
+            cell.imgDanhGia2.setImageResource(R.drawable.star1);
+            cell.imgDanhGia3.setImageResource(R.drawable.star0);
+            cell.imgDanhGia4.setImageResource(R.drawable.star0);
+            cell.imgDanhGia5.setImageResource(R.drawable.star0);
+        }else if(danhgia.equals("3")){
+            cell.imgDanhGia1.setImageResource(R.drawable.star1);
+            cell.imgDanhGia2.setImageResource(R.drawable.star1);
+            cell.imgDanhGia3.setImageResource(R.drawable.star1);
+            cell.imgDanhGia4.setImageResource(R.drawable.star0);
+            cell.imgDanhGia5.setImageResource(R.drawable.star0);
+        }else if(danhgia.equals("4")){
+            cell.imgDanhGia1.setImageResource(R.drawable.star1);
+            cell.imgDanhGia2.setImageResource(R.drawable.star1);
+            cell.imgDanhGia3.setImageResource(R.drawable.star1);
+            cell.imgDanhGia4.setImageResource(R.drawable.star1);
+            cell.imgDanhGia5.setImageResource(R.drawable.star0);
+        }else if(danhgia.equals("5")){
+            cell.imgDanhGia1.setImageResource(R.drawable.star1);
+            cell.imgDanhGia2.setImageResource(R.drawable.star1);
+            cell.imgDanhGia3.setImageResource(R.drawable.star1);
+            cell.imgDanhGia4.setImageResource(R.drawable.star1);
+            cell.imgDanhGia5.setImageResource(R.drawable.star1);
+        }
         return view;
     }
 }

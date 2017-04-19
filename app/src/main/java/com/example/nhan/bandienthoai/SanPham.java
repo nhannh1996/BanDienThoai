@@ -8,7 +8,16 @@ public class SanPham {
     String anhSP,tenSP;
     String sotienSP;
     String mieutaSP;
+    String danhgia;
     public SanPham() {
+    }
+
+    public SanPham(String anhSP, String tenSP, String sotienSP, String mieutaSP, String danhgia) {
+        this.anhSP = anhSP;
+        this.tenSP = tenSP;
+        this.sotienSP = sotienSP;
+        this.mieutaSP = mieutaSP;
+        this.danhgia = danhgia;
     }
 
     public SanPham(String anhSP, String tenSP, String sotienSP, String mieutaSP) {
@@ -48,5 +57,13 @@ public class SanPham {
 
     public void setMieutaSP(String mieutaSP) {
         this.mieutaSP = mieutaSP;
+    }
+
+    public String getDanhgia() {
+        return danhgia;
+    }
+
+    public void setDanhgia(String danhgia) {
+        this.danhgia = danhgia;
     }
 }

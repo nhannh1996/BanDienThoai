@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ListView;
+import android.widget.GridView;
 import android.widget.Toast;
 
 import com.example.nhan.bandienthoai.R;
@@ -28,7 +28,7 @@ import java.util.ArrayList;
 
 public class fragment_samsung  extends Fragment {
     public fragment_samsung(){};
-    private ListView listView_SanPham;
+    private GridView listView_SanPham;
     private FirebaseDatabase database;
     private DatabaseReference firebase;
     private adapterSP_Iphone adapterSP_iphone;
@@ -42,7 +42,7 @@ public class fragment_samsung  extends Fragment {
         database = FirebaseDatabase.getInstance();
         firebase = database.getReference("SanPham");
         mAuth = FirebaseAuth.getInstance();
-        listView_SanPham = (ListView) v.findViewById(R.id.listView_SanPham);
+        listView_SanPham = (GridView) v.findViewById(R.id.listView_SanPham);
 
         listSP = new ArrayList<>();
         firebase.child("SamSung").child("DienThoai").addValueEventListener(new ValueEventListener() {
@@ -55,7 +55,8 @@ public class fragment_samsung  extends Fragment {
                     String ten = data.child("tenSP").getValue().toString();
                     String sotien = data.child("sotienSP").getValue().toString();
                     String mieuta = data.child("mieutaSP").getValue().toString();
-                    SanPham sanPham = new SanPham(anhsp,ten,sotien,mieuta);
+                    String danhgia = data.child("danhgia").getValue().toString();
+                    SanPham sanPham = new SanPham(anhsp,ten,sotien,mieuta,danhgia);
                     listSP.add(sanPham);
                 }
                 adapterSP_iphone = new adapterSP_Iphone(getActivity(),listSP);
@@ -74,6 +75,7 @@ public class fragment_samsung  extends Fragment {
                     final String ten = listSP.get(i).getTenSP().toString();
                     String sotien = listSP.get(i).getSotienSP();
                     String mieuta = listSP.get(i).getMieutaSP().toString();
+                    String danhgia = listSP.get(i).getDanhgia().toString();
                     Intent intent = new Intent(getContext(), SuaSanPham.class);
                     firebase.child("SamSung").child("DienThoai").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -96,6 +98,7 @@ public class fragment_samsung  extends Fragment {
                     intent.putExtra("tenSP", ten);
                     intent.putExtra("sotienSP", sotien);
                     intent.putExtra("mieutaSP", mieuta);
+                    intent.putExtra("danhgia", danhgia);
                     startActivityForResult(intent,99);
                 }
             }

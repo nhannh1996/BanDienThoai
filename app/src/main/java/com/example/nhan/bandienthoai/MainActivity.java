@@ -1,11 +1,12 @@
 package com.example.nhan.bandienthoai;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
@@ -17,21 +18,32 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.nhan.bandienthoai.fragment.fragment_adapter;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     ViewPager pager;
     TabLayout tabLayout;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseAuth mAuth;
+    private FirebaseDatabase database;
+    private DatabaseReference firebase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mAuth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+        firebase = database.getReference("HoTroTrucTuyen");
         fragment();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -40,11 +52,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
+
+                Intent intent = new Intent(MainActivity.this,HoTroTrucTuyen.class);
+                startActivity(intent);
+
+              //  }
             }
         });
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -53,6 +69,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+      /*  firebase.child(taikhoan).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                listChat.clear();
+                for(DataSnapshot data: dataSnapshot.getChildren()){
+                    if(!taikhoan.equals("GYHe2BPEyaa0L3fPCnPXg0EJfBj2")){
+                        listChat.add("User: " + data.child(taikhoan).getValue().toString());
+                    }else{
+                        listChat.add("Admin: " + data.child(taikhoan).getValue().toString());
+                    }
+                    adapter.notifyDataSetChanged();
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });*/
     }
     public void fragment(){
         pager = (ViewPager) findViewById(R.id.view_pager);
@@ -83,12 +120,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_DangXuat) {
 
                 mAuth.signOut();
@@ -99,7 +131,47 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             return true;
         }
-
+        if (id == R.id.action_DoiMatKhau) {
+            final Dialog dialog = new Dialog(this);
+            dialog.setContentView(R.layout.dialog_doimatkhau);
+            dialog.setTitle("Đổi mật khẩu");
+            final EditText edt_MatKhauMoi = (EditText) dialog.findViewById(R.id.editText_MatKhauMoi);
+            Button btn_DoiMatKhau = (Button) dialog.findViewById(R.id.button_DoiMatKhau);
+            Button btn_QuayLai = (Button) dialog.findViewById(R.id.button_QuayLai);
+            btn_QuayLai.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.cancel();
+                }
+            });
+            btn_DoiMatKhau.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String matkhaumoi = edt_MatKhauMoi.getText().toString();
+                    if(matkhaumoi.length() == 0){
+                        Toast.makeText(MainActivity.this, "Vui lòng nhập mật khẩu mới!", Toast.LENGTH_SHORT).show();
+                        edt_MatKhauMoi.requestFocus();
+                        return;
+                    }
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    user.updatePassword(matkhaumoi).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()){
+                                Toast.makeText(MainActivity.this, "Đổi mật khẩu thành công!", Toast.LENGTH_SHORT).show();
+                                return;
+                            }else{
+                                Toast.makeText(MainActivity.this, "Đổi mật khẩu chưa thành công!", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                        }
+                    });
+                    dialog.cancel();
+                }
+            });
+            dialog.show();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 

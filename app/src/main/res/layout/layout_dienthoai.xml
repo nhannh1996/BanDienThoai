@@ -3,11 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#fff">
 
     <ImageView
         android:id="@+id/imageView_AnhSanPham"
-        android:layout_width="200dp"
+        android:layout_width="150dp"
         android:layout_height="150dp"
         app:srcCompat="@mipmap/ic_launcher"
         android:layout_gravity="center"/>
@@ -17,7 +18,9 @@
         android:layout_height="wrap_content"
         android:text="IPhone 6Plus"
         android:layout_gravity="center"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textColor="#A0A0A0"/>
     <TextView
         android:id="@+id/textView_GiaTienSP"
         android:layout_width="match_parent"
@@ -25,12 +28,37 @@
         android:text="1399000 VND"
         android:gravity="center"
         android:layout_gravity="center"
-        />
-    <TextView
-        android:id="@+id/textView_MieuTa"
-        android:layout_width="match_parent"
+        android:textSize="16dp" />
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Chinh Hãng 100%"
-        android:layout_gravity="center"
-        android:gravity="center"/>
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+        <ImageView
+            android:id="@+id/imageView_Star1"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:srcCompat="@drawable/star1" />
+        <ImageView
+            android:id="@+id/imageView_Star2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:srcCompat="@drawable/star0" />
+        <ImageView
+            android:id="@+id/imageView_Star3"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:srcCompat="@drawable/star0" />
+        <ImageView
+            android:id="@+id/imageView_Star4"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:srcCompat="@drawable/star0" />
+        <ImageView
+            android:id="@+id/imageView_Star5"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:srcCompat="@drawable/star0" />
+    </LinearLayout>
+
 </LinearLayout>

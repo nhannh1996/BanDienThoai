@@ -30,7 +30,7 @@ import java.io.ByteArrayOutputStream;
 public class AdminManager extends AppCompatActivity {
     private ImageButton imgButton_AnhSanPham;
     private EditText edt_TenSanPham,edt_SoTienSanPham, edt_MieuTaSanPham;
-    private Spinner sp_Loai,sp_HangSanPham;
+    private Spinner sp_Loai,sp_HangSanPham,sp_DanhGia;
     private Button btn_ThemSanPham;
     private FirebaseDatabase database;
     private DatabaseReference firebase;
@@ -72,9 +72,10 @@ public class AdminManager extends AppCompatActivity {
         String tenSP = edt_TenSanPham.getText().toString();
         String sotienSP = edt_SoTienSanPham.getText().toString();
         String mieutaSp = edt_MieuTaSanPham.getText().toString();
+        String danhgia = sp_DanhGia.getSelectedItem().toString();
         byte[] hinh = ImageView_To_Byte(imgButton_AnhSanPham);
         final String chuoiHinh = Base64.encodeToString(hinh, Base64.DEFAULT);
-        SanPham sanPham = new SanPham(chuoiHinh,tenSP,sotienSP,mieutaSp);
+        SanPham sanPham = new SanPham(chuoiHinh,tenSP,sotienSP,mieutaSp,danhgia);
         String sphang = sp_HangSanPham.getSelectedItem().toString();
 
         String loai = sp_Loai.getSelectedItem().toString();
@@ -152,6 +153,7 @@ public class AdminManager extends AppCompatActivity {
         edt_MieuTaSanPham = (EditText) findViewById(R.id.editText_MieuTa);
         sp_Loai = (Spinner) findViewById(R.id.spinner_Loai);
         sp_HangSanPham = (Spinner) findViewById(R.id.spinner_HangSP);
+        sp_DanhGia = (Spinner) findViewById(R.id.spinner_DanhGia);
         btn_ThemSanPham = (Button) findViewById(R.id.button_ThemSanPham);
 
         ArrayAdapter<CharSequence> adapterLoai = ArrayAdapter.createFromResource(this,R.array.listLoai,android.R.layout.simple_spinner_item);
@@ -161,6 +163,10 @@ public class AdminManager extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapterHang = ArrayAdapter.createFromResource(this,R.array.listHang,android.R.layout.simple_spinner_item);
         adapterHang.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp_HangSanPham.setAdapter(adapterHang);
+
+        ArrayAdapter<CharSequence> adapterDanhGia = ArrayAdapter.createFromResource(this,R.array.listDanhGia,android.R.layout.simple_spinner_item);
+        adapterDanhGia.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sp_DanhGia.setAdapter(adapterDanhGia);
 
     }
 }

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Galaxy S5 Prime"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"/>
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_weight="1"
+        android:src="@drawable/galaxys5"
+        android:layout_gravity="center"/>
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1000000 VND"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:textSize="16dp"/>
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Đặt Online hoặc Gọi 18006601 ưu tiên khuyến mãi (SL có hạn)"
+        android:layout_gravity="center"
+        android:layout_margin="18dp"
+        android:textColor="#f00"/>
+</LinearLayout>
