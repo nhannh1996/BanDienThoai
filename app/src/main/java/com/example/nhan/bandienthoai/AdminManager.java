@@ -143,7 +143,7 @@ public class AdminManager extends AppCompatActivity {
     }
     public void anhxa(){
 
-        setTitle("Quản lý");
+        setTitle("Quản lý - Thêm sản phẩm");
         database = FirebaseDatabase.getInstance();
         firebase = database.getReference("SanPham");
         mAuth = FirebaseAuth.getInstance();

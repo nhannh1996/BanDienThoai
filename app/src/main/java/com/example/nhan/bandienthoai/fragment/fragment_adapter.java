@@ -23,7 +23,7 @@ public class fragment_adapter extends FragmentStatePagerAdapter {
                 frag=new fragment_nokia();
                 break;
             case 2:
-                frag=new fragment_samsung();
+                frag=new fragment_ss();
                 break;
             case 3:
                 frag=new fragment_oppo();

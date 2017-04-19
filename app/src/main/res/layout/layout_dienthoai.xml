@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#fff">
+    android:background="#fff"
+    android:padding="16dp">
 
     <ImageView
         android:id="@+id/imageView_AnhSanPham"
@@ -36,28 +37,28 @@
         android:layout_gravity="center">
         <ImageView
             android:id="@+id/imageView_Star1"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             app:srcCompat="@drawable/star1" />
         <ImageView
             android:id="@+id/imageView_Star2"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             app:srcCompat="@drawable/star0" />
         <ImageView
             android:id="@+id/imageView_Star3"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             app:srcCompat="@drawable/star0" />
         <ImageView
             android:id="@+id/imageView_Star4"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             app:srcCompat="@drawable/star0" />
         <ImageView
             android:id="@+id/imageView_Star5"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             app:srcCompat="@drawable/star0" />
     </LinearLayout>
 

@@ -37,7 +37,6 @@ public class SuaSanPham extends AppCompatActivity {
     private DatabaseReference firebase;
     private String hang,loai;
     public static String keySanPham;
-    //error key
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -194,7 +193,7 @@ public class SuaSanPham extends AppCompatActivity {
         }
         if(hang.equals("Apple")){
             sp_HangSanPham.setSelection(0);
-        }else if(hang.equals("SamSung")){
+        }else if(hang.equals("Samsung")){
             sp_HangSanPham.setSelection(1);
         }else if(hang.equals("Nokia")){
             sp_HangSanPham.setSelection(2);

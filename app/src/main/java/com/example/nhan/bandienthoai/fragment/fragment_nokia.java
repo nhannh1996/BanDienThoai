@@ -1,13 +1,19 @@
 package com.example.nhan.bandienthoai.fragment;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nhan.bandienthoai.R;
@@ -78,21 +84,6 @@ public class fragment_nokia extends Fragment {
                     String mieuta = listSP.get(i).getMieutaSP().toString();
                     Intent intent = new Intent(getContext(), SuaSanPham.class);
                     String danhgia = listSP.get(i).getDanhgia().toString();
-                    firebase.child("Nokia").child("DienThoai").addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            for (DataSnapshot data:dataSnapshot.getChildren()){
-                                if(data.child("tenSP").getValue().toString().equals(ten)){
-                                    key = data.getKey().toString();
-                                    return;
-                                }
-                            }
-                        }
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-                    });
                     intent.putExtra("anhSP", anh);
                     intent.putExtra("hangSX","Nokia");
                     intent.putExtra("loaiSP", "DienThoai");
@@ -101,6 +92,23 @@ public class fragment_nokia extends Fragment {
                     intent.putExtra("mieutaSP", mieuta);
                     intent.putExtra("danhgia", danhgia);
                     startActivityForResult(intent,99);
+                }else{
+                    Dialog dialog = new Dialog(getContext());
+                    dialog.setContentView(R.layout.view_chitietsanpham);
+                    TextView tv_TenSanPham = (TextView) dialog.findViewById(R.id.textView2);
+                    ImageView img_AnhSP = (ImageView) dialog.findViewById(R.id.imageView2);
+                    TextView tv_Tien = (TextView) dialog.findViewById(R.id.textView4);
+                    TextView tv_MieuTa = (TextView) dialog.findViewById(R.id.textView3);
+                    tv_TenSanPham.setText(listSP.get(i).getTenSP().toString());
+                    tv_Tien.setText(listSP.get(i).getSotienSP().toString() + " VND");
+                    tv_MieuTa.setText(listSP.get(i).getMieutaSP().toString());
+
+                    String AnhSanPham = listSP.get(i).getAnhSP().toString();
+                    byte[] mangHinh = Base64.decode(AnhSanPham, Base64.DEFAULT);
+                    Bitmap bmp = BitmapFactory.decodeByteArray(mangHinh,0,mangHinh.length);
+                    img_AnhSP.setImageBitmap(bmp);
+
+                    dialog.show();
                 }
             }
         });

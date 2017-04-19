@@ -117,7 +117,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-    public void setBtn_DangKy(){
+    public void setBtn_DangKy() {
         String taikhoan = edt_TaiKhoan.getText().toString();
         String matkhau = edt_MatKhau.getText().toString();
         if(taikhoan.length() == 0 ){
