@@ -1,7 +1,6 @@
 package com.example.nhan.bandienthoai.fragment;
 
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -33,31 +32,26 @@ import java.util.ArrayList;
  * Created by Nhan on 4/3/2017.
  */
 
-public class fragment_iphone  extends Fragment {
-    public fragment_iphone(){};
+public class fragment_ss_laptop extends Fragment {
+    public fragment_ss_laptop(){};
 
-    static public GridView listView_SanPham;
+    private GridView listView_SanPham;
     private FirebaseDatabase database;
     private DatabaseReference firebase;
-    static public adapterSP_Iphone adapterSP_iphone;
-    static public ArrayList<SanPham> listSP;
+    private adapterSP_Iphone adapterSP_iphone;
+    private ArrayList<SanPham> listSP;
     private FirebaseAuth mAuth;
-    private ProgressDialog mProgress;
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_iphone, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_ss, container, false);
         database = FirebaseDatabase.getInstance();
         firebase = database.getReference("SanPham");
         mAuth = FirebaseAuth.getInstance();
-        mProgress = new ProgressDialog(getContext());
-        mProgress.setTitle("Đang tải dữ liệu ở máy chủ...");
-        mProgress.setCancelable(false);
-        mProgress.setMessage("Vui lòng chờ trong giây lát!");
-        mProgress.show();
         listView_SanPham = (GridView) v.findViewById(R.id.listView_SanPham);
 
         listSP = new ArrayList<>();
-        firebase.child("Apple").child("DienThoai").addValueEventListener(new ValueEventListener() {
+        firebase.child("Samsung").child("DienThoai").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 listSP.clear();
@@ -73,7 +67,6 @@ public class fragment_iphone  extends Fragment {
                 }
                 adapterSP_iphone = new adapterSP_Iphone(getActivity(),listSP);
                 listView_SanPham.setAdapter(adapterSP_iphone);
-                mProgress.dismiss();
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -88,10 +81,10 @@ public class fragment_iphone  extends Fragment {
                     final String ten = listSP.get(i).getTenSP().toString();
                     String sotien = listSP.get(i).getSotienSP();
                     String mieuta = listSP.get(i).getMieutaSP().toString();
-                    String danhgia = listSP.get(i).getDanhgia().toString();
                     Intent intent = new Intent(getContext(), SuaSanPham.class);
+                    String danhgia = listSP.get(i).getDanhgia().toString();
                     intent.putExtra("anhSP", anh);
-                    intent.putExtra("hangSX","Apple");
+                    intent.putExtra("hangSX","Samsung");
                     intent.putExtra("loaiSP", "DienThoai");
                     intent.putExtra("tenSP", ten);
                     intent.putExtra("sotienSP", sotien);

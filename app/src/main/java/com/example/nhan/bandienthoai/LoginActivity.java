@@ -67,17 +67,16 @@ public class LoginActivity extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     // User is signed in
-
                     if(user.getUid().toString().equals("GYHe2BPEyaa0L3fPCnPXg0EJfBj2")){
                         Toast.makeText(LoginActivity.this,"ADMIN " + user.getEmail(), Toast.LENGTH_SHORT).show();
                         Intent intent1 = new Intent(LoginActivity.this,AdminManager.class);
                         startActivity(intent1);
-                        finish();
+                        LoginActivity.this.finish();
                     }else{
                         Toast.makeText(LoginActivity.this,"USER " + user.getEmail(), Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                         startActivity(intent);
-                        finish();
+                        LoginActivity.this.finish();
                     }
                 } else {
                     // User is signed out

@@ -23,6 +23,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.nhan.bandienthoai.fragment.fragment_adapter;
+import com.example.nhan.bandienthoai.fragment.fragment_adapter_laptop;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -44,7 +45,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         firebase = database.getReference("HoTroTrucTuyen");
-        fragment();
+        pager = (ViewPager) findViewById(R.id.view_pager);
+        tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -92,14 +94,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });*/
     }
     public void fragment(){
-        pager = (ViewPager) findViewById(R.id.view_pager);
-        tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        tabLayout.removeAllTabs();
+        pager.removeAllViews();
         FragmentManager manager = getSupportFragmentManager();
         fragment_adapter adapter = new fragment_adapter(manager);
         pager.setAdapter(adapter);
         tabLayout.setupWithViewPager(pager);
         pager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setTabsFromPagerAdapter(adapter);
+    }
+    public void fragment_laptop(){
+        tabLayout.removeAllTabs();
+        pager.removeAllViews();
+
+        FragmentManager manager = getSupportFragmentManager();
+        fragment_adapter_laptop adapter_laptopp = new fragment_adapter_laptop(manager);
+        pager.setAdapter(adapter_laptopp);
+        tabLayout.setupWithViewPager(pager);
+        pager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.setTabsFromPagerAdapter(adapter_laptopp);
     }
     @Override
     public void onBackPressed() {
@@ -182,14 +195,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.nav_mobile) {
-
-            Intent intent = new Intent(this,MainActivity.class);
+            fragment();
+           /* Intent intent = new Intent(this,MainActivity.class);
             startActivity(intent);
             Toast.makeText(this,"MOBILE",Toast.LENGTH_LONG).show();
-            finish();
-            setTitle("Điện Thoại");
+            MainActivity.this.finish();
+            setTitle("Điện Thoại");*/
         } else if (id == R.id.nav_laptop) {
-            setTitle("LapTop");
+            fragment_laptop();
+
+           // pager.setVisibility(View.GONE);
+            //
         } else if (id == R.id.nav_computer) {
             setTitle("Máy tính bàn");
         } else if (id == R.id.nav_manage) {

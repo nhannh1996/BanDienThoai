@@ -33,14 +33,14 @@ import java.util.ArrayList;
  * Created by Nhan on 4/3/2017.
  */
 
-public class fragment_iphone  extends Fragment {
-    public fragment_iphone(){};
+public class fragment_iphone_laptop extends Fragment {
+    public fragment_iphone_laptop(){};
 
-    static public GridView listView_SanPham;
+    private GridView listView_SanPham;
     private FirebaseDatabase database;
     private DatabaseReference firebase;
-    static public adapterSP_Iphone adapterSP_iphone;
-    static public ArrayList<SanPham> listSP;
+    private adapterSP_Iphone adapterSP_iphone;
+    private ArrayList<SanPham> listSP;
     private FirebaseAuth mAuth;
     private ProgressDialog mProgress;
     @Override
@@ -57,7 +57,7 @@ public class fragment_iphone  extends Fragment {
         listView_SanPham = (GridView) v.findViewById(R.id.listView_SanPham);
 
         listSP = new ArrayList<>();
-        firebase.child("Apple").child("DienThoai").addValueEventListener(new ValueEventListener() {
+        firebase.child("Apple").child("LapTop").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 listSP.clear();
@@ -92,7 +92,7 @@ public class fragment_iphone  extends Fragment {
                     Intent intent = new Intent(getContext(), SuaSanPham.class);
                     intent.putExtra("anhSP", anh);
                     intent.putExtra("hangSX","Apple");
-                    intent.putExtra("loaiSP", "DienThoai");
+                    intent.putExtra("loaiSP", "LapTop");
                     intent.putExtra("tenSP", ten);
                     intent.putExtra("sotienSP", sotien);
                     intent.putExtra("mieutaSP", mieuta);
